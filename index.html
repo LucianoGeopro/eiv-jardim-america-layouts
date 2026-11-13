@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Layouts Cartográficos — EIV Jardim América</title>
+<meta name="description" content="Propostas de layout cartográfico para o Estudo de Impacto de Vizinhança do Supermercado Pró-Brasil, Jardim América, Goiânia (GO).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --p0: #001a2c; --p1: #003153; --p2: #1d5a85; --p3: #3d7aa8; --p4: #8fb8d6; --p5: #d4e5f1;
+    --bg: #f6f8fa; --card: #ffffff; --ink: #0b2a40; --muted: #4f6476; --line: #dbe5ee;
+    --serif: "Source Serif 4", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--p2); }
+
+  /* topo */
+  .hero { background: linear-gradient(135deg, var(--p0) 0%, var(--p1) 45%, var(--p3) 100%); color: #fff; padding: 28px 16px 72px; }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand .logo { background: #fff; border-radius: 10px; padding: 8px 14px; }
+  .brand .logo img { height: 34px; width: auto; }
+  .brand .tag { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--p5); }
+  .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 6vw, 58px); line-height: 1.08; margin: 56px 0 14px; letter-spacing: -.01em; }
+  .hero p.lead { font-size: clamp(16px, 2.2vw, 19px); max-width: 680px; color: #e4eef6; margin: 0; }
+  .meta { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 30px; font-size: 14px; color: var(--p5); }
+  .meta b { color: #fff; font-weight: 600; }
+
+  /* navegação entre propostas */
+  .switch { max-width: 1120px; margin: -34px auto 0; padding: 0 16px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .switch a { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; text-decoration: none; color: var(--ink); box-shadow: 0 8px 24px rgba(0,26,44,.08); transition: transform .15s, box-shadow .15s; }
+  .switch a:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,26,44,.14); }
+  .switch small { display: block; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--p3); font-weight: 600; }
+  .switch span { font-family: var(--serif); font-size: 20px; font-weight: 600; }
+
+  section.prop { max-width: 1120px; margin: 64px auto 0; padding: 0 16px; }
+  .prop-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+  .badge { background: var(--p1); color: #fff; border-radius: 999px; padding: 3px 12px; font-size: 13px; font-weight: 600; letter-spacing: .06em; }
+  .prop h2 { font-family: var(--serif); font-size: clamp(26px, 4vw, 36px); font-weight: 600; margin: 0; }
+  .prop .sub { color: var(--muted); margin: 4px 0 22px; font-size: 17px; max-width: 760px; }
+
+  .sheet { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; box-shadow: 0 10px 30px rgba(0,26,44,.07); }
+  .sheet button.zoom { all: unset; cursor: zoom-in; display: block; border-radius: 8px; overflow: hidden; position: relative; }
+  .sheet button.zoom:focus-visible { outline: 3px solid var(--p3); outline-offset: 3px; }
+  .sheet .hint { position: absolute; right: 12px; bottom: 12px; background: rgba(0,26,44,.82); color: #fff; font-size: 13px; padding: 6px 12px; border-radius: 999px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; padding: 10px 16px; font-size: 14px; font-weight: 600; text-decoration: none; border: 1px solid var(--p1); }
+  .btn.primary { background: var(--p1); color: #fff; }
+  .btn.ghost { background: transparent; color: var(--p1); cursor: pointer; font-family: inherit; }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
+  .feat { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--p3); border-radius: 12px; padding: 16px 18px; }
+  .feat h3 { margin: 0 0 6px; font-size: 15px; font-weight: 600; color: var(--p1); }
+  .feat p { margin: 0; font-size: 14.5px; color: var(--muted); }
+
+  /* comparação */
+  .compare { max-width: 1120px; margin: 72px auto 0; padding: 0 16px; }
+  .compare h2 { font-family: var(--serif); font-size: clamp(24px, 3.4vw, 32px); font-weight: 600; margin: 0 0 18px; }
+  .table-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  table { width: 100%; border-collapse: collapse; min-width: 560px; font-size: 15px; }
+  th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th { background: var(--p5); color: var(--p1); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+  tbody th { font-weight: 600; color: var(--p1); width: 22%; }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+
+  .next { max-width: 1120px; margin: 56px auto 0; padding: 0 16px; }
+  .next .box { background: linear-gradient(135deg, var(--p1), var(--p2)); color: #fff; border-radius: 16px; padding: 28px; }
+  .next h2 { font-family: var(--serif); margin: 0 0 8px; font-size: 26px; font-weight: 600; }
+  .next ol { margin: 10px 0 0; padding-left: 20px; color: #e4eef6; }
+  .next li { margin: 4px 0; }
+
+  footer { max-width: 1120px; margin: 64px auto 0; padding: 28px 16px 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13.5px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; }
+  footer strong { color: var(--ink); }
+
+  /* visualizador */
+  .viewer { position: fixed; inset: 0; background: rgba(0,16,28,.94); display: none; z-index: 50; }
+  .viewer.open { display: block; }
+  .viewer .stage { position: absolute; inset: 56px 0 0 0; overflow: auto; cursor: grab; }
+  .viewer .stage.fit img { max-width: 100%; max-height: 100%; margin: auto; position: absolute; inset: 0; object-fit: contain; }
+  .viewer .stage:not(.fit) img { max-width: none; width: 3307px; }
+  .viewer .bar { position: absolute; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; color: #fff; gap: 10px; }
+  .viewer .bar span { font-size: 14px; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .viewer .bar .ctrl { display: flex; gap: 8px; flex-shrink: 0; }
+  .viewer .bar button { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 7px 12px; font: 600 14px var(--sans); cursor: pointer; }
+
+  @media (max-width: 800px) {
+    .features { grid-template-columns: 1fr; }
+    .switch { grid-template-columns: 1fr; }
+    .brand .tag { display: none; }
+    .hero h1 { margin-top: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo"><img src="img/logo-apex.png" alt="Apex Projetos &amp; Consultoria"></div>
+      <div class="tag">Estudo de Impacto de Vizinhança</div>
+    </div>
+    <h1>Layouts cartográficos<br>do Jardim América</h1>
+    <p class="lead">Duas propostas de prancha para apresentar a Área de Influência Direta do Supermercado Pró-Brasil, em Goiânia. As duas usam a mesma base técnica e mudam a linguagem visual.</p>
+    <div class="meta">
+      <div>Empreendimento <b>Supermercado Pró-Brasil</b></div>
+      <div>Local <b>Jardim América, Goiânia (GO)</b></div>
+      <div>Formato <b>A3 paisagem</b></div>
+      <div>Data <b>Novembro de 2026</b></div>
+    </div>
+  </div>
+</header>
+
+<nav class="switch" aria-label="Propostas">
+  <a href="#proposta-a"><small>Proposta A</small><span>Guia cartográfico</span></a>
+  <a href="#proposta-b"><small>Proposta B</small><span>Editorial</span></a>
+</nav>
+
+<section class="prop" id="proposta-a">
+  <div class="prop-head"><span class="badge">Proposta A</span><h2>Guia cartográfico</h2></div>
+  <p class="sub">Leitura de mapa-guia: o bairro inteiro em primeiro plano, a hierarquia das vias em tons de azul da Prússia e um quadro de distâncias até os principais serviços do entorno.</p>
+  <div class="sheet">
+    <button class="zoom" data-src="img/proposta-guia.jpg" data-title="Proposta A — Guia cartográfico" aria-label="Ampliar a Proposta A">
+      <img src="img/proposta-guia.jpg" alt="Prancha A3 da Proposta A: mapa do Jardim América com a AID, vias em azul, quadro de distâncias e imagens de satélite em círculos" loading="lazy">
+      <span class="hint">Clique para ampliar</span>
+    </button>
+  </div>
+  <div class="actions">
+    <a class="btn primary" href="img/proposta-guia.jpg" download>Baixar prancha (JPG, 200 dpi)</a>
+  </div>
+  <div class="features">
+    <div class="feat"><h3>Quadro de distâncias</h3><p>Distâncias em linha reta entre o empreendimento e oito pontos de referência: praças, farmácia, banco, escola, delegacia e unidades de saúde.</p></div>
+    <div class="feat"><h3>Hierarquia viária</h3><p>Vias arteriais, coletoras e locais diferenciadas por cor e espessura, com os nomes das principais avenidas.</p></div>
+    <div class="feat"><h3>Três escalas de imagem</h3><p>Imagens de satélite em círculos: a área da AID, o entorno imediato e o próprio supermercado.</p></div>
+  </div>
+</section>
+
+<section class="prop" id="proposta-b">
+  <div class="prop-head"><span class="badge">Proposta B</span><h2>Editorial</h2></div>
+  <p class="sub">Linguagem de revista de cartografia: papel creme, tipografia serifada, moldura amarela e um texto curto que explica o que a AID representa.</p>
+  <div class="sheet">
+    <button class="zoom" data-src="img/proposta-editorial.jpg" data-title="Proposta B — Editorial" aria-label="Ampliar a Proposta B">
+      <img src="img/proposta-editorial.jpg" alt="Prancha A3 da Proposta B: mapa topográfico do Jardim América com a AID em amarelo, coluna lateral com localização, legenda e texto explicativo" loading="lazy">
+      <span class="hint">Clique para ampliar</span>
+    </button>
+  </div>
+  <div class="actions">
+    <a class="btn primary" href="img/proposta-editorial.jpg" download>Baixar prancha (JPG, 200 dpi)</a>
+  </div>
+  <div class="features">
+    <div class="feat"><h3>Narrativa</h3><p>Título, subtítulo e um parágrafo "Sobre a área" orientam quem não tem familiaridade com mapas técnicos.</p></div>
+    <div class="feat"><h3>Base topográfica</h3><p>Fundo topográfico com tom de papel, quadras e nomes de ruas, e graticula em coordenadas geográficas.</p></div>
+    <div class="feat"><h3>Localização em dois níveis</h3><p>Mapas de localização do Brasil e de Goiânia, com a área do mapa principal destacada.</p></div>
+  </div>
+</section>
+
+<section class="compare" aria-labelledby="comp">
+  <h2 id="comp">Comparando as propostas</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Proposta A · Guia</th><th>Proposta B · Editorial</th></tr></thead>
+      <tbody>
+        <tr><th>Ênfase</th><td>Acessibilidade e serviços do entorno</td><td>Contexto e explicação da AID</td></tr>
+        <tr><th>Base do mapa</th><td>Vias do OpenStreetMap sobre fundo claro</td><td>Mapa topográfico em tom de papel</td></tr>
+        <tr><th>Escala do mapa</th><td>1:9.000</td><td>1:9.500</td></tr>
+        <tr><th>Elementos de apoio</th><td>Quadro de distâncias e imagens de satélite</td><td>Texto explicativo e ficha técnica</td></tr>
+        <tr><th>Indicada para</th><td>Apresentação a órgãos públicos e comunidade, foco em mobilidade</td><td>Relatórios e materiais de divulgação</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="next">
+  <div class="box">
+    <h2>Próximos passos</h2>
+    <ol>
+      <li>Escolha a proposta preferida, ou indique elementos de uma para levar à outra.</li>
+      <li>Envie ajustes de texto, cores ou pontos de referência a destacar.</li>
+      <li>Com a aprovação, preparamos as pranchas finais do estudo no mesmo padrão.</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div><strong>Apex Projetos &amp; Consultoria</strong><br>Organização cartográfica: Luciano Henrique A. de Oliveira, Geógrafo</div>
+  <div>SIRGAS 2000 / UTM 22S · Dados: © colaboradores do OpenStreetMap, IBGE, CARTO, Esri</div>
+</footer>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Visualização ampliada">
+  <div class="bar">
+    <span id="vtitle"></span>
+    <div class="ctrl">
+      <button id="vtoggle" type="button">Tamanho real</button>
+      <button id="vclose" type="button">Fechar ✕</button>
+    </div>
+  </div>
+  <div class="stage fit" id="vstage"><img id="vimg" alt=""></div>
+</div>
+
+<script>
+(function () {
+  var viewer = document.getElementById('viewer'), stage = document.getElementById('vstage'),
+      img = document.getElementById('vimg'), title = document.getElementById('vtitle'),
+      toggle = document.getElementById('vtoggle'), lastBtn = null;
+  function setFit(fit) { stage.classList.toggle('fit', fit); toggle.textContent = fit ? 'Tamanho real' : 'Ajustar à tela'; }
+  function open(btn) {
+    lastBtn = btn; img.src = btn.dataset.src; img.alt = btn.querySelector('img').alt;
+    title.textContent = btn.dataset.title; setFit(true); viewer.classList.add('open');
+    document.body.style.overflow = 'hidden'; document.getElementById('vclose').focus();
+  }
+  function close() { viewer.classList.remove('open'); document.body.style.overflow = ''; if (lastBtn) lastBtn.focus(); }
+  document.querySelectorAll('button.zoom').forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
+  document.getElementById('vclose').addEventListener('click', close);
+  toggle.addEventListener('click', function () { setFit(!stage.classList.contains('fit')); });
+  img.addEventListener('click', function (e) {
+    if (!stage.classList.contains('fit')) return;
+    var r = img.getBoundingClientRect(), fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+    setFit(false);
+    requestAnimationFrame(function () {
+      stage.scrollLeft = fx * img.scrollWidth - stage.clientWidth / 2;
+      stage.scrollTop = fy * img.scrollHeight - stage.clientHeight / 2;
+    });
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && viewer.classList.contains('open')) close(); });
+  // arrastar para mover quando ampliado
+  var drag = null;
+  stage.addEventListener('mousedown', function (e) { if (stage.classList.contains('fit')) return; drag = { x: e.clientX, y: e.clientY, l: stage.scrollLeft, t: stage.scrollTop }; stage.style.cursor = 'grabbing'; e.preventDefault(); });
+  window.addEventListener('mousemove', function (e) { if (!drag) return; stage.scrollLeft = drag.l - (e.clientX - drag.x); stage.scrollTop = drag.t - (e.clientY - drag.y); });
+  window.addEventListener('mouseup', function () { drag = null; stage.style.cursor = ''; });
+})();
+</script>
+</body>
+</html>
