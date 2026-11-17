@@ -26,8 +26,8 @@
   .hero { background: linear-gradient(135deg, var(--p0) 0%, var(--p1) 45%, var(--p3) 100%); color: #fff; padding: 28px 16px 72px; }
   .wrap { max-width: 1180px; margin: 0 auto; }
   .brand { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .brand .logo { background: #fff; border-radius: 10px; padding: 8px 14px; }
-  .brand .logo img { height: 34px; width: auto; }
+  .brand .logo { background: #fff; border-radius: 12px; padding: 10px 18px; max-width: 100%; }
+  .brand .logo img { height: 64px; width: auto; max-width: 100%; object-fit: contain; }
   .brand .tag { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--p5); }
   .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 6vw, 58px); line-height: 1.08; margin: 56px 0 14px; letter-spacing: -.01em; }
   .hero p.lead { font-size: clamp(16px, 2.2vw, 19px); max-width: 720px; color: #e4eef6; margin: 0; }
@@ -87,6 +87,7 @@
   @media (max-width: 640px) {
     .switch { grid-template-columns: 1fr; }
     .brand .tag { display: none; }
+    .brand .logo img { height: 48px; }
     .hero h1 { margin-top: 40px; }
     .grade.dupla { grid-template-columns: 1fr; }
     .viewer .bar #vtoggle { display: none; }
